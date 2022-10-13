@@ -185,6 +185,11 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="oGF-CZ-3LZ"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="d7S-9P-HKC"/>
@@ -205,6 +210,37 @@
                                             <action selector="goChartView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qzp-Xw-fUg"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-XP-OED">
+                                        <rect key="frame" x="342" y="287" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="jvE-Ne-Aj9"/>
+                                            <constraint firstAttribute="height" constant="30" id="r2K-75-H1Q"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.086274509799999996" green="0.65098039220000004" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                <hierarchicalColors>
+                                                    <color red="0.71475055279999999" green="0.3672704134" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </hierarchicalColors>
+                                            </imageReference>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.019607843140000001" green="0.74509803919999995" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="close:" destination="qt8-PW-Fyj" eventType="touchUpInside" id="WMR-hy-SQ5"/>
+                                            <action selector="removeAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vir-Ja-k0M"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="gBu-NY-EHv" firstAttribute="leading" secondItem="fPt-y0-P8G" secondAttribute="leading" constant="36" id="2uL-Xk-cEq"/>
@@ -218,6 +254,8 @@
                                     <constraint firstItem="gdR-aK-tpd" firstAttribute="top" secondItem="v2K-Sd-Eqn" secondAttribute="bottom" constant="8" id="i7e-nY-qXJ"/>
                                     <constraint firstAttribute="width" constant="414" id="kE8-Wa-r0f"/>
                                     <constraint firstAttribute="bottom" secondItem="gBu-NY-EHv" secondAttribute="bottom" constant="66" id="nUY-ux-Wmi"/>
+                                    <constraint firstItem="gBu-NY-EHv" firstAttribute="top" secondItem="rjU-XP-OED" secondAttribute="bottom" constant="8" symbolic="YES" id="oWy-Rl-Kx2"/>
+                                    <constraint firstItem="fPt-y0-P8G" firstAttribute="trailing" secondItem="rjU-XP-OED" secondAttribute="trailing" constant="42" id="uRs-le-EVC"/>
                                     <constraint firstItem="gdR-aK-tpd" firstAttribute="centerX" secondItem="8DQ-lC-fmK" secondAttribute="centerX" id="uZ3-E5-bYn"/>
                                     <constraint firstItem="v2K-Sd-Eqn" firstAttribute="leading" secondItem="fPt-y0-P8G" secondAttribute="leading" constant="87" id="wwB-3k-hur"/>
                                 </constraints>
@@ -418,7 +456,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7q-ht-GBF" userLabel="Container View">
-                                <rect key="frame" x="25" y="259.5" width="364" height="300"/>
+                                <rect key="frame" x="25" y="259.5" width="364" height="280"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limit Belirle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spg-dw-i4e">
                                         <rect key="frame" x="20" y="42" width="324" height="31"/>
@@ -430,7 +468,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S9-Ao-FXR">
-                                        <rect key="frame" x="282" y="214" width="41" height="41"/>
+                                        <rect key="frame" x="282" y="199" width="41" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="Puu-F2-3QA"/>
                                             <constraint firstAttribute="width" constant="41" id="cPW-xV-nSB"/>
@@ -474,7 +512,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5w-LG-9oV">
-                                        <rect key="frame" x="43.5" y="214" width="41" height="41"/>
+                                        <rect key="frame" x="43.5" y="199" width="41" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="SSM-L6-Yor"/>
                                             <constraint firstAttribute="width" constant="41" id="Waf-S3-bGZ"/>
@@ -506,29 +544,23 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="18M-z6-hoX"/>
+                                    <constraint firstAttribute="height" constant="280" id="18M-z6-hoX"/>
                                     <constraint firstAttribute="trailing" secondItem="0S9-Ao-FXR" secondAttribute="trailing" constant="41" id="AN2-cf-l4V"/>
-                                    <constraint firstItem="P5w-LG-9oV" firstAttribute="top" secondItem="kN0-w9-J6Y" secondAttribute="bottom" constant="61" id="Uer-7l-YWc"/>
+                                    <constraint firstItem="P5w-LG-9oV" firstAttribute="top" secondItem="kN0-w9-J6Y" secondAttribute="bottom" constant="46" id="Uer-7l-YWc"/>
                                     <constraint firstItem="Spg-dw-i4e" firstAttribute="leading" secondItem="K7q-ht-GBF" secondAttribute="leading" constant="20" id="Ug1-dk-eww"/>
                                     <constraint firstItem="Spg-dw-i4e" firstAttribute="top" secondItem="K7q-ht-GBF" secondAttribute="top" constant="42" id="gxo-Ka-Ijh"/>
                                     <constraint firstItem="kN0-w9-J6Y" firstAttribute="top" secondItem="Spg-dw-i4e" secondAttribute="bottom" constant="30" id="hEc-Ck-oMV"/>
-                                    <constraint firstItem="0S9-Ao-FXR" firstAttribute="top" secondItem="kN0-w9-J6Y" secondAttribute="bottom" constant="61" id="iuk-Vb-QZl"/>
+                                    <constraint firstItem="0S9-Ao-FXR" firstAttribute="top" secondItem="kN0-w9-J6Y" secondAttribute="bottom" constant="46" id="iuk-Vb-QZl"/>
                                     <constraint firstItem="P5w-LG-9oV" firstAttribute="leading" secondItem="K7q-ht-GBF" secondAttribute="leading" constant="43.5" id="lVE-9v-seT"/>
-                                    <constraint firstAttribute="bottom" secondItem="0S9-Ao-FXR" secondAttribute="bottom" constant="45" id="mGn-3x-Vkl"/>
+                                    <constraint firstAttribute="bottom" secondItem="0S9-Ao-FXR" secondAttribute="bottom" constant="40" id="mGn-3x-Vkl"/>
                                     <constraint firstAttribute="trailing" secondItem="Spg-dw-i4e" secondAttribute="trailing" constant="20" id="nZ0-yO-Hg6"/>
                                     <constraint firstAttribute="trailing" secondItem="kN0-w9-J6Y" secondAttribute="trailing" constant="25" id="tpD-Jh-2kZ"/>
                                     <constraint firstItem="kN0-w9-J6Y" firstAttribute="leading" secondItem="K7q-ht-GBF" secondAttribute="leading" constant="25" id="uHx-I8-Rr3"/>
-                                    <constraint firstAttribute="bottom" secondItem="P5w-LG-9oV" secondAttribute="bottom" constant="45" id="ypv-Iy-1gR"/>
+                                    <constraint firstAttribute="bottom" secondItem="P5w-LG-9oV" secondAttribute="bottom" constant="40" id="ypv-Iy-1gR"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <real key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -542,7 +574,7 @@
                             <constraint firstItem="o6s-ZA-cYF" firstAttribute="leading" secondItem="zWC-Mv-ZVB" secondAttribute="leading" id="huR-uN-DER"/>
                             <constraint firstItem="zWC-Mv-ZVB" firstAttribute="trailing" secondItem="o6s-ZA-cYF" secondAttribute="trailing" id="srk-n8-h6q"/>
                             <constraint firstItem="K7q-ht-GBF" firstAttribute="centerX" secondItem="swa-KR-96B" secondAttribute="centerX" id="v1w-Qe-wLP"/>
-                            <constraint firstItem="K7q-ht-GBF" firstAttribute="centerY" secondItem="swa-KR-96B" secondAttribute="centerY" constant="-38.5" id="vfi-Fe-1sO"/>
+                            <constraint firstItem="K7q-ht-GBF" firstAttribute="centerY" secondItem="swa-KR-96B" secondAttribute="centerY" constant="-48.5" id="vfi-Fe-1sO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -618,6 +650,7 @@
         <image name="checkmark.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="xmark.rectangle.fill" catalog="system" width="128" height="93"/>
         <systemColor name="secondaryLabelColor">

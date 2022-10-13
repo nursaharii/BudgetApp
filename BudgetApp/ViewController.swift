@@ -117,32 +117,7 @@ class ViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "AddSpentVC") as! AddSpentViewController
         self.present(viewController,animated: true) {
             viewController.spentListener = {
-                self.category.removeAll()
-                self.spentMoneys.removeAll()
-                if let spentMoneys = app.defaultsManager.getSpentMoney() {
-                    self.spent = spentMoneys.reduce(0, +)
-                }
-                self.left = (self.limit ?? 0) - self.spent
-                if self.left > 0 {
-                    self.dailyLeft.textColor = .systemGreen
-                } else {
-                    self.dailyLeft.textColor = .systemRed
-                }
-                
-                self.limit = app.defaultsManager.getLimit()
-                self.dailyLeft.text = String(self.left).replacingOccurrences(of: ".", with: ",")
-                self.dailySpent.text = String(self.spent).replacingOccurrences(of: ".", with: ",")
-                let spentRate = 1 - (self.spent / (self.limit ?? 0))
-                self.progressView.progress = Float(spentRate)
-                
-                if let selectedCategory = app.defaultsManager.getSelectedCategories() {
-                    self.category = selectedCategory
-                }
-                if let spentMoney = app.defaultsManager.getSpentMoney() {
-                    self.spentMoneys = spentMoney
-                }
-                self.tableView.reloadData()
-                
+                self.setBudgetValues()
             }
         }
     }
@@ -155,6 +130,62 @@ class ViewController: UIViewController {
         self.present(viewController, animated: true)
     }
     
+    @IBAction func removeAll(_ sender: Any) {
+        let alert = UIAlertController(title: "Verileri Sil", message: "Tüm verileriniz silinecek devam etmek istiyor musunuz?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (sender: UIAlertAction) -> Void in
+            self.removeValues()
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (sender: UIAlertAction) -> Void in
+            self.dismiss(animated: true)
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert,animated: true)
+        
+    }
+    func setBudgetValues() {
+        self.category.removeAll()
+        self.spentMoneys.removeAll()
+        
+        if let spentMoneys = app.defaultsManager.getSpentMoney() {
+            self.spent = spentMoneys.reduce(0, +)
+        }
+        self.left = (self.limit ?? 0) - self.spent
+        if self.left > 0 {
+            self.dailyLeft.textColor = .systemGreen
+        } else {
+            self.dailyLeft.textColor = .systemRed
+        }
+        
+        self.dailyLeft.text = String(self.left).replacingOccurrences(of: ".", with: ",")
+        self.dailySpent.text = String(self.spent).replacingOccurrences(of: ".", with: ",")
+        let spentRate = 1 - (self.spent / (self.limit ?? 0))
+        self.progressView.progress = Float(spentRate)
+        
+        if let selectedCategory = app.defaultsManager.getSelectedCategories() {
+            self.category = selectedCategory
+        }
+        if let spentMoney = app.defaultsManager.getSpentMoney() {
+            self.spentMoneys = spentMoney
+        }
+        tableView.reloadData()
+    }
+    
+    func removeValues() {
+        app.defaultsManager.removeLimit()
+        app.defaultsManager.removeSpentMoney()
+        app.defaultsManager.removeSelectedCategories()
+        category = []
+        spentMoneys = []
+        left = 0
+        spent = 0
+        limit = 0
+        dailyLeft.text = "0"
+        dailySpent.text = "0"
+        tableView.reloadData()
+        progressView.progress = 1
+    }
     
 }
 
@@ -178,5 +209,26 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _,_, completionHandler in
+            if !self.category.isEmpty {
+                self.category.remove(at: indexPath.row)
+                self.spentMoneys.remove(at: indexPath.row)
+                app.defaultsManager.setSelectedCategories(categories: self.category)
+                app.defaultsManager.setSpentMoney(moneys: self.spentMoneys)
+                self.setBudgetValues()
+            }
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        deleteAction.backgroundColor = UIColor.systemRed
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        return config
     }
 }

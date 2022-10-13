@@ -13,7 +13,7 @@ class UserDefaultsManager {
     public func setLimit(limit: Double?) {
         defaults.set(limit,forKey: "dailyLimit")
     }
-    public func removeLimit(limit: Double?) {
+    public func removeLimit() {
         defaults.set(nil,forKey: "dailyLimit")
     }
     
@@ -25,8 +25,12 @@ class UserDefaultsManager {
         defaults.set(categories,forKey: "selectedCategory")
     }
     
-    public func removeSelectedCategories(categories: [String]?) {
+    public func removeSelectedCategories() {
         defaults.set(nil,forKey: "selectedCategory")
+    }
+    
+    public func removeSelectedCategories(categories: [String]?) {
+        defaults.set(categories,forKey: "selectedCategory")
     }
     
     public func getSelectedCategories() -> [String]?{
@@ -35,6 +39,10 @@ class UserDefaultsManager {
     
     public func setSpentMoney(moneys: [Double]?) {
         defaults.set(moneys,forKey: "spentMoney")
+    }
+    
+    public func removeSpentMoney()  {
+        defaults.set(nil,forKey: "spentMoney")
     }
     
     public func removeSpentMoney(moneys: [Double]?)  {
