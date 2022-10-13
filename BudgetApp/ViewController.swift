@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let progressView = CircularProgressView(frame: CGRect(x: 7, y: 7, width: 200, height: 200), lineWidth: 15, rounded: true)
+    let progressView = CircularProgressView(frame: CGRect(x: 3, y: 10, width: 200, height: 200), lineWidth: 15, rounded: true)
     @IBOutlet weak var viewForProgress: UIView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var infoView: UIView!
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var left = 0.0
     var spentMoneys = [Double]()
     var category = [String]()
+    var categoryData = ["Alışveriş","Yiyecek","Seyahat","Sağlık","Teknoloji","Eğlence","Spor","Eğitim","Konaklama"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
             dailySpent.text = String(spent).replacingOccurrences(of: ".", with: ",")
             progressView.progress = 1
         }
-  
+        
         
     }
     
@@ -98,7 +99,7 @@ class ViewController: UIViewController {
                 self.limit = app.defaultsManager.getLimit()
                 self.left = (self.limit ?? 0) - self.spent
                 let spentRate = 1 - (self.spent / (self.limit ?? 0))
-                self.progressView.progress = Float(spentRate)
+                
                 
                 if self.left > 0 {
                     self.dailyLeft.textColor = .systemGreen
@@ -106,6 +107,7 @@ class ViewController: UIViewController {
                     self.dailyLeft.textColor = .systemRed
                 }
                 self.dailyLeft.text = String(self.left)
+                self.progressView.progress = Float(spentRate)
             }
         }
     }
@@ -115,6 +117,8 @@ class ViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "AddSpentVC") as! AddSpentViewController
         self.present(viewController,animated: true) {
             viewController.spentListener = {
+                self.category.removeAll()
+                self.spentMoneys.removeAll()
                 if let spentMoneys = app.defaultsManager.getSpentMoney() {
                     self.spent = spentMoneys.reduce(0, +)
                 }
@@ -131,9 +135,26 @@ class ViewController: UIViewController {
                 let spentRate = 1 - (self.spent / (self.limit ?? 0))
                 self.progressView.progress = Float(spentRate)
                 
+                if let selectedCategory = app.defaultsManager.getSelectedCategories() {
+                    self.category = selectedCategory
+                }
+                if let spentMoney = app.defaultsManager.getSpentMoney() {
+                    self.spentMoneys = spentMoney
+                }
+                self.tableView.reloadData()
+                
             }
         }
     }
+    
+    @IBAction func goChartView(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ShowChartVC") as! ShowChartViewController
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        self.present(viewController, animated: true)
+    }
+    
     
 }
 
@@ -146,11 +167,16 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SpentDetailCell",for: indexPath) as? SpentDetailCell {
             cell.selectionStyle = .none
             cell.category.text = category[indexPath.row]
+            cell.category.textColor = UIColor.white
             cell.amount.text = String(spentMoneys[indexPath.row])
+            cell.amount.textColor = UIColor.white
+            for i in 0 ... 8 {
+                if category[indexPath.row] == categoryData[i] {
+                    cell.backgroundColor = UIColor.categoryColor[i]
+                }
+            }
             return cell
         }
         return UITableViewCell()
     }
-    
-    
 }

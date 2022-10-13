@@ -20,6 +20,8 @@
 		4C2424F628EDFD4E00A07930 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2424F428EDFD4E00A07930 /* Main.storyboard */; };
 		4C2424F828EDFD4E00A07930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C2424F728EDFD4E00A07930 /* Assets.xcassets */; };
 		4C2424FB28EDFD4E00A07930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2424F928EDFD4E00A07930 /* LaunchScreen.storyboard */; };
+		4C5D925E28F8312900CBA2F8 /* ShowChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D925D28F8312900CBA2F8 /* ShowChartViewController.swift */; };
+		4CB45D4228F8833600FAEEF3 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB45D4128F8833600FAEEF3 /* UIColor+Ext.swift */; };
 		4CF43E2828F6F34D00F99E19 /* SpentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF43E2728F6F34D00F99E19 /* SpentDetailCell.swift */; };
 		8A0057EC1D7D03F6C14169B0 /* Pods_BudgetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CB504FD191D62B107BB3FB /* Pods_BudgetApp.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		4C2424F728EDFD4E00A07930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C2424FA28EDFD4E00A07930 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C2424FC28EDFD4E00A07930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C5D925D28F8312900CBA2F8 /* ShowChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowChartViewController.swift; sourceTree = "<group>"; };
+		4CB45D4128F8833600FAEEF3 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		4CF43E2728F6F34D00F99E19 /* SpentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpentDetailCell.swift; sourceTree = "<group>"; };
 		85AA84BE567AED418D63C2F1 /* Pods-BudgetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetApp.debug.xcconfig"; path = "Target Support Files/Pods-BudgetApp/Pods-BudgetApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +67,7 @@
 			children = (
 				4C20EDF028F6A05100D2485D /* UIView+Ext.swift */,
 				4C20EDFE28F6DF3D00D2485D /* UITextfield+Ext.swift */,
+				4CB45D4128F8833600FAEEF3 /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 				4CF43E2728F6F34D00F99E19 /* SpentDetailCell.swift */,
 				4C20EDF228F6B32100D2485D /* AddSpentViewController.swift */,
 				4C20EDF428F6B4E100D2485D /* SetLimitViewController.swift */,
+				4C5D925D28F8312900CBA2F8 /* ShowChartViewController.swift */,
 				4C2424F428EDFD4E00A07930 /* Main.storyboard */,
 				4C2424F728EDFD4E00A07930 /* Assets.xcassets */,
 				4C2424F928EDFD4E00A07930 /* LaunchScreen.storyboard */,
@@ -256,9 +262,11 @@
 			files = (
 				4C2424F328EDFD4D00A07930 /* ViewController.swift in Sources */,
 				4C20EDF528F6B4E100D2485D /* SetLimitViewController.swift in Sources */,
+				4C5D925E28F8312900CBA2F8 /* ShowChartViewController.swift in Sources */,
 				4C20EDEE28F6979C00D2485D /* CircularProgressView.swift in Sources */,
 				4C20EDF128F6A05100D2485D /* UIView+Ext.swift in Sources */,
 				4C2424EF28EDFD4D00A07930 /* AppDelegate.swift in Sources */,
+				4CB45D4228F8833600FAEEF3 /* UIColor+Ext.swift in Sources */,
 				4CF43E2828F6F34D00F99E19 /* SpentDetailCell.swift in Sources */,
 				4C20EDFA28F6BDF500D2485D /* UserDefaultsManager.swift in Sources */,
 				4C20EDFD28F6BF9200D2485D /* AppContainer.swift in Sources */,

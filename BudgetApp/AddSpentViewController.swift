@@ -24,7 +24,6 @@ class AddSpentViewController: UIViewController {
         navBar.barTintColor = UIColor(red: 182.0 / 255.0, green: 94.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
         pickerView.addShadow()
         noteTextView.borderColor = UIColor(red: 182.0 / 255.0, green:94.0 / 255.0, blue: 200.0 / 255.0, alpha: 0.5)
-
     }
     
     @IBAction func close(_ sender: Any) {
@@ -51,9 +50,7 @@ class AddSpentViewController: UIViewController {
         }
         self.spentListener?()
         self.dismiss(animated: true)
-        
     }
-    
 }
 
 extension AddSpentViewController : UIPickerViewDelegate, UIPickerViewDataSource {
@@ -65,7 +62,10 @@ extension AddSpentViewController : UIPickerViewDelegate, UIPickerViewDataSource 
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        selectedCategory = pickerData[row]
         return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategory = pickerData[row]
     }
 }
