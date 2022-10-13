@@ -34,22 +34,23 @@ class AddSpentViewController: UIViewController {
         spentMoney = spentTextfield.text
         guard let selectedCategory = selectedCategory else { return }
         guard let spentMoney = Double(spentMoney ?? "0.0") else { return }
-        
-        if var selectedCategories = app.defaultsManager.getSelectedCategories() {
-            selectedCategories.append(selectedCategory)
-            app.defaultsManager.setSelectedCategories(categories: selectedCategories)
-        } else {
-            app.defaultsManager.setSelectedCategories(categories: [selectedCategory])
+        if spentMoney > 0 {
+            if var selectedCategories = app.defaultsManager.getSelectedCategories() {
+                selectedCategories.append(selectedCategory)
+                app.defaultsManager.setSelectedCategories(categories: selectedCategories)
+            } else {
+                app.defaultsManager.setSelectedCategories(categories: [selectedCategory])
+            }
+            
+            if var spentMoneys = app.defaultsManager.getSpentMoney() {
+                spentMoneys.append(spentMoney)
+                app.defaultsManager.setSpentMoney(moneys: spentMoneys)
+            } else {
+                app.defaultsManager.setSpentMoney(moneys: [spentMoney])
+            }
+            self.spentListener?()
+            self.dismiss(animated: true)
         }
-        
-        if var spentMoneys = app.defaultsManager.getSpentMoney() {
-            spentMoneys.append(spentMoney)
-            app.defaultsManager.setSpentMoney(moneys: spentMoneys)
-        } else {
-            app.defaultsManager.setSpentMoney(moneys: [spentMoney])
-        }
-        self.spentListener?()
-        self.dismiss(animated: true)
     }
 }
 
